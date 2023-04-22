@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install
+      - name: npm install and build
         run: npm install
         env:
           CI: true
@@ -36,10 +36,12 @@ jobs:
           key: ${{ secrets.KEY}}
           port: ${{ secrets.PORT}}
           script: |
-             nvm instal 16
-             nvm use 16
-             cd $HOME/blink
-             git fetch --all
-             git reset --hard origin/master
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+            nvm install 16
+            cd $HOME/test
+            git fetch --all
+            git reset --hard origin/master
             npm install
-            pm2 restart 0
+            pm2 restart test
