@@ -17,9 +17,15 @@ git clone repo
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 ```
+## Source Bashrc : 
+```
+source ~/.bashrc 
+```
 
 ## Install node version required : 
-```nvm install 16 ```
+```
+nvm install 16
+```
 
 ## Install the required dependencies using npm install.
 
