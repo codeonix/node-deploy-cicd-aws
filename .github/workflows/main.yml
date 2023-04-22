@@ -44,5 +44,4 @@ jobs:
             cd $HOME/node-deploy-cicd-aws
             git fetch --all
             git reset --hard origin/develop
-            npm install
             pm2 restart node-deploy-cicd-aws
