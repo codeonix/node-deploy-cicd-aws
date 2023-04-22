@@ -43,6 +43,6 @@ jobs:
             nvm install 16
             cd $HOME/node-deploy-cicd-aws
             git fetch --all
-            git reset --hard origin/master
+            git reset --hard origin/develop
             npm install
             pm2 restart node-deploy-cicd-aws
