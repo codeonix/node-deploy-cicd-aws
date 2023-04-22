@@ -34,7 +34,7 @@ cd your-sveltekit-app
 yarn
 ```
 
-## Build your SvelteKit app using npm run build.
+## Build your  app using npm run build.
 
 ```
 yarn build
@@ -49,8 +49,8 @@ pm2 start npm --name "app-name" -- start
 
 ## Configure Nginx as a reverse proxy to forward requests to your app.
 
-```sudo nano /etc/nginx/conf.d/your-domain-name.conf
-
+```
+sudo nano /etc/nginx/conf.d/your-domain-name.conf
 ```
 
 ## Paste the following content into the file, replacing your-domain-name.com with your actual domain name or your EC2 instance's public IP address:
