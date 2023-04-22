@@ -55,7 +55,8 @@ sudo nano /etc/nginx/conf.d/your-domain-name.conf
 
 ## Paste the following content into the file, replacing your-domain-name.com with your actual domain name or your EC2 instance's public IP address:
 
-```server {
+```
+server {
   listen 80;
   server_name your-domain-name.com;
   location / {
@@ -126,7 +127,7 @@ name: Deployment
 on:
   push:
     branches:
-      - master
+      - develop
 
 jobs:
   build:
@@ -142,9 +143,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: npm install and build
-        run: |
-          npm install
-          npm run build
+        run: npm install
         env:
           CI: true
 
@@ -161,18 +160,16 @@ jobs:
           key: ${{ secrets.KEY}}
           port: ${{ secrets.PORT}}
           script: |
-            curl -o-   https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh    | bash
-            . ~/.nvm/nvm.sh
-             nvm instal 16
-             export NVM_DIR=$HOME/.nvm;
-             source $NVM_DIR/nvm.sh;
-             nvm use 16
-             cd $HOME/blink
-             git fetch --all
-             git reset --hard origin/master
-            npm install
-            npm run build
-            pm2 restart app-name
+            set -e
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+            nvm install 16
+            cd $HOME/node-deploy-cicd-aws
+            git fetch --all
+            git reset --hard origin/develop
+            pm2 restart 0
+            
 ```
 
 ## Add Credentials :
